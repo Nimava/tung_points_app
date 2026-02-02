@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import '../widgets/expandable_section.dart';
+
+class HelpPage extends StatelessWidget {
+  const HelpPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          /// --- HOW TO USE ---
+          ExpandableSection(
+            title: 'How to Use This App',
+            initiallyExpanded: true,
+            child: Text(
+              '''
+This application is designed as an educational and clinical reference for practitioners and students of Tung’s acupuncture system.
+
+You can browse points through the main list or use the search function to find points by:
+• Point number
+• Point name
+• Clinical indications
+
+Each point page is organized into expandable sections, allowing you to focus on relevant information such as location, indications, techniques, images, or combinations without unnecessary distraction.
+
+Additional features include:
+• Favorites for quick access
+• Personal clinical notes per point
+• Automatic expansion of relevant sections during search
+• Full-screen image viewing
+              ''',
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
+
+          /// --- JOHNSON INDICATIONS ---
+          ExpandableSection(
+            title: 'Understanding Johnson Indications',
+            child: Text(
+              '''
+In the Johnson indications section, clinical indications marked with an asterisk (*) represent primary indications.
+
+Indications without an asterisk are considered secondary indications.
+
+This notation follows the convention used in Susan Johnson’s clinical teaching and publications and helps practitioners quickly identify the most important therapeutic uses of each point.
+              ''',
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
+
+          /// --- MEASUREMENTS ---
+          ExpandableSection(
+            title: 'Traditional Measurements (Cun, En, etc.)',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/help_image.png',
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  '''
+Tung’s acupuncture frequently uses proportional measurements rather than fixed distances.
+
+Cun (寸)
+A cun is a proportional unit based on the patient’s body. One cun varies from person to person and is commonly measured using finger widths or anatomical landmarks.
+
+En
+In Tung’s system, En refers to relative spacing between points within a local anatomical region rather than a standardized distance.
+
+Key principle:
+Always prioritize proportional measurement, palpation, and tissue response over rigid numerical distances. Many Tung points are identified by tenderness, texture change, or sensitivity.
+                  ''',
+                  style: theme.textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ),
+
+          /// --- PRACTICAL TIPS ---
+          ExpandableSection(
+            title: 'Practical Tips',
+            child: Text(
+              '''
+• Palpation is essential when locating Tung points.
+• Record patient responses and clinical outcomes using the Personal Notes feature.
+• Use point combinations thoughtfully; Tung’s system emphasizes functional relationships rather than strict meridian theory.
+• This app is best used alongside proper training and clinical experience.
+              ''',
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

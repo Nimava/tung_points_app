@@ -1,0 +1,138 @@
+import 'package:flutter/material.dart';
+import '../widgets/expandable_section.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          /// --- TUNG SYSTEM ---
+          ExpandableSection(
+            title: 'About Tung’s Acupuncture',
+            initiallyExpanded: true,
+            child: const Text(
+              '''
+Tung’s acupuncture is a highly effective and distinct system of acupuncture passed down through generations.
+
+It is known for its distal treatment strategies, rapid clinical effects, and unique point system that differs significantly from standard meridian acupuncture.
+
+This application aims to present Tung’s points in a clear, structured, and practitioner-friendly format.
+              ''',
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
+
+          /// --- MASTER TUNG ---
+          ExpandableSection(
+            title: 'Master Tung Ching-Chang',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/master_tung.jpg',
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  '''
+Master Tung Ching-Chang (1916–1975) inherited a family acupuncture lineage preserved for generations.
+
+His system includes hundreds of extraordinary points not found in standard acupuncture texts and emphasizes balance, holographic correspondence, and immediate therapeutic response.
+
+Today, Tung’s acupuncture is practiced worldwide and respected for its clinical effectiveness.
+                  ''',
+                  style: theme.textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ),
+
+          /// --- SUSAN JOHNSON ---
+          ExpandableSection(
+            title: 'Susan Johnson',
+            child: const Text(
+              '''
+Susan Johnson, L.Ac., is a respected practitioner and teacher who played a major role in introducing Tung’s acupuncture to Western audiences.
+
+Her work helped preserve, systematize, and clinically contextualize Tung’s points while maintaining respect for the original lineage.
+              ''',
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
+
+          /// --- DISCLAIMER ---
+          ExpandableSection(
+            title: 'Educational Disclaimer',
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text(
+                '''
+This application is intended for educational and reference purposes only.
+
+It is not a substitute for professional medical training, diagnosis, or treatment. The developers are not responsible for clinical outcomes resulting from the use or misuse of the information provided.
+
+Practitioners are responsible for practicing within the laws and regulations of their jurisdiction.
+                ''',
+                style: TextStyle(color: Colors.red),
+              ),
+            ),
+          ),
+
+          /// --- SOURCES ---
+          ExpandableSection(
+            title: 'Sources & References',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Books:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 6),
+                const Text(
+                  '''
+Master Tung’s Magic Points:
+A Definitive Clinical Guide
+By Susan Johnson, L.Ac. and Eric Renaud, M.Ac.
+Copyright © 2019 Susan Johnson
+ISBN 978-0-578-56525-5
+                  ''',
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  'Online Resources:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    launchUrl(
+                      Uri.parse(
+                        'https://www.mastertungacupuncture.org/acupuncture/tung/points/listall',
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'eLotus – Master Tung Acupuncture Points',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

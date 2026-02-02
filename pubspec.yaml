@@ -1,0 +1,58 @@
+name: tung_points_app_v2
+description: "Master Tung Points educational reference app (version 2.0)"
+publish_to: "none"
+
+version: 2.0.0+1
+
+environment:
+  sdk: ">=3.4.3 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  # --- UI & Utilities ---
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10+1
+  url_launcher: ^6.3.0
+  provider: ^6.1.2
+  # You can add any extra packages you used before here
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.2
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/data/
+    - assets/tung_points_images/
+    - assets/help_image.png
+    - assets/icon.png
+    - assets/master_tung.jpg
+
+# ------------------------------------------------------------------
+# 🚀 APP ICON CONFIG (run: flutter pub run flutter_launcher_icons)
+# ------------------------------------------------------------------
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icon_foreground.png"
+
+# ------------------------------------------------------------------
+# 💧 SPLASH SCREEN CONFIG (run: flutter pub run flutter_native_splash:create)
+# ------------------------------------------------------------------
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/splash.png
+  android: true
+  ios: false
+  web: false

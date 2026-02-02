@@ -1,0 +1,42 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+class FavoritesService {
+  static const _key = 'favorite_points';
+
+  /// Get all favorite point IDs
+  static Future<Set<String>> getFavorites() async {
+    final prefs = await SharedPreferences.getInstance();
+    final list = prefs.getStringList(_key) ?? [];
+    return list.toSet();
+  }
+
+  /// Check if a point is favorite
+  static Future<bool> isFavorite(String pointId) async {
+    final favorites = await getFavorites();
+    return favorites.contains(pointId);
+  }
+
+  /// Toggle favorite status
+  static Future<void> toggleFavorite(String pointId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final favorites = await getFavorites();
+
+    if (favorites.contains(pointId)) {
+      favorites.remove(pointId);
+    } else {
+      favorites.add(pointId);
+    }
+
+    await prefs.setStringList(_key, favorites.toList());
+  }
+  
+  static Future<void> toggle(String pointId) async {
+    final isFav = await isFavorite(pointId);
+    if (isFav) {
+      await removeFavorite(pointId);
+    } else {
+      await addFavorite(pointId);
+  }
+}
+
+}
