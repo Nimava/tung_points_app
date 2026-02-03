@@ -8,8 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -21,14 +23,16 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.35.7'
+          channel: stable
+          cache: true
 
-      - name: Precache
-        run: flutter precache --no-android --no-windows || true
+      - name: Flutter doctor
+        run: flutter doctor -v
 
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK
+      - name: Build release APK
         run: flutter build apk --release
 
       - name: Upload APK
